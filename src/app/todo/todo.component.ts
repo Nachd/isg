@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-todo',
@@ -9,7 +10,13 @@ export class TodoComponent implements OnInit {
 
   name : string = '';
   tab : any[] = [];
-  constructor() { }
+  constructor(public translate : TranslateService) { 
+    translate.setDefaultLang('en');
+ 
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+   translate.use('en');
+
+  }
 
   ngOnInit() {
   }
@@ -31,5 +38,8 @@ export class TodoComponent implements OnInit {
   }
   done(i){
     this.tab[i].isDone = true;
+  }
+  changeLang(lang){
+    this.translate.use(lang)
   }
 }

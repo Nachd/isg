@@ -14,28 +14,21 @@
   
   <div class="content" role="main">
   <h1> {{ 'isg' | translate}}</h1>
-    <div class="row col-md-7">
-      <div class="col-md-9">
-
-        <input [(ngModel)]="name" (keyup.enter)="addToList()">
-      </div>
-
-      <div class="col-md-3">
-        <button class="btn btn-primary" (click)="addToList()"  >Add</button>
-      </div>
+  <div *ngIf="show_alert" class="alert alert-success">Saved! </div>
+   <form [formGroup]="loginForm">
+       <div class="form-group">
+           <input class="form-control"
+            formControlName="email" required [(ngModel)]="email" 
+            email="true"
+            placeholder="Email">
+       </div>
+       <div class="form-group">
+        <input class="form-control" placeholder="Passowrd" minlength="6"
+         formControlName="password" [(ngModel)]="password" required>
     </div>
-    <div class="row col-md-7 bloc">
-      
-      <ul>
-        <li  *ngFor="let item of tab; let i=index"
-         [style.background]=" item.isDone ? '#caffca' : '#fff' "
-         [style.text-decoration]="item.isRemoved ? 'line-through' : ''"
-         >
-         {{i+1 }} - {{item.content}} 
-          <button class="btn btn-success" [disabled]="item.isRemoved" (click)="done(i)">Done</button>
-          <button class="btn btn-danger" [disabled]="item.isDone" (click)="remove(i)">Remove</button>
-        <p>{{item.date | date : 'medium'}}</p>
-        </li>
-      </ul>
+    <div class="form-group">
+       <button class="btn btn-success" (click)="save()" [disabled]="!loginForm.valid"> Save</button>
     </div>
+   </form>
+   
   </div>
