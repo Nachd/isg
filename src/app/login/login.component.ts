@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +10,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public translate : TranslateService) { }
-  loginForm : FormGroup;
-  email ;
-   password;
-   show_alert = false;
+  constructor(public translate: TranslateService ,
+    private router : Router
+    ) { }
+  loginForm: FormGroup;
+  email;
+  password;
+  show_alert = false;
   ngOnInit() {
     this.loginForm = new FormGroup({
-      'email' : new FormControl([Validators.required , Validators.email]),
-      'password' :new FormControl([Validators.required, Validators.minLength(6)])
+      'email': new FormControl([Validators.required, Validators.email]),
+      'password': new FormControl([Validators.required, Validators.minLength(6)])
     })
   }
-save(){
-this.show_alert = true;
-}
+  save() {
+    this.show_alert = true;
+    this.router.navigate(['/produits'])
+  }
 }
