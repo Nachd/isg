@@ -1,1 +1,39 @@
-<p>ajout-produit works!</p>
+<div class="content" role="main">
+
+    <h1> {{ 'Product' | translate}}</h1>
+    <div class="row col-md-7">
+        <form [formGroup]="productForm" style="width: 100%;">
+            <div class="form-group">
+                <input class="form-control" formControlName="ref" required [(ngModel)]="ref"
+                    placeholder="Saisi la référence du produit">
+            </div>
+            <div class="form-group">
+                <input class="form-control" formControlName="nom" required [(ngModel)]="nom"
+                    placeholder="Saisi le nom du produit">
+            </div>
+            <div class="form-group">
+                <select formControlName="categorie" class="form-control" required [(ngModel)]="categorie">
+                    <option disabled>Choose your category</option>
+                    <option *ngFor="let c of categories"> {{c}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                    <input class="form-control" formControlName="prix" required [(ngModel)]="prix"
+                        placeholder="Prix" type="number">
+                </div>
+            <div class="form-group">
+                <input class="form-control" formControlName="qte" required [(ngModel)]="qte"
+                    placeholder="Quantite" type="number">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" formControlName="description" required [(ngModel)]="description"
+                    placeholder="Description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-success form-control" (click)="save()" [disabled]="!productForm.valid"> Save</button>
+            </div>
+        </form>
+
+    </div>
+</div>
