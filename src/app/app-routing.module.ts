@@ -32,6 +32,9 @@ const routes: Routes = [
       },{
         path : 'ajout',
         component : AjoutProduitComponent
+      },{
+        path : 'edit/:ref',
+        component : AjoutProduitComponent
       }
     ]
   }
